@@ -24,7 +24,30 @@ struct CentralProcessingUnit
     // Running the computer will start the program from RAM
     void Run()
     {
-      // do stuff
+      uint8_t t = RINGCOUNTER.GetTState();
+      
+      // test program
+      switch(t)
+      {
+        case 1:
+          CONTROLBUS.SetControlWord(CO);
+          Serial.println(BUS.GetContent(), BIN);
+          break;
+        case 2:
+          CONTROLBUS.SetControlWord(CE);
+          break;
+        case 3:
+          CONTROLBUS.SetControlWord(NOP);
+          break;
+        case 4:
+          CONTROLBUS.SetControlWord(NOP);
+          break;
+        case 5:
+          CONTROLBUS.SetControlWord(NOP);
+          break;
+      }
+
+      RINGCOUNTER.Pulse();
     }
 
   private:

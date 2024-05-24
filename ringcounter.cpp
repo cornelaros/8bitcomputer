@@ -30,19 +30,22 @@ void RingCounter::Pulse()
   }
   _clk_state = 0;
   digitalWrite(_clk_pin, _clk_state);
-  delay(1);
+  delay(25);
 
   _clk_state = 1;
   digitalWrite(_clk_pin, _clk_state);
-  delay(1);
+  delay(25);
 
   _clk_state = 0;
+  _t_state < _max_t_state ? _t_state += 1 : _t_state = 1;
   digitalWrite(_clk_pin, _clk_state);
 }
 
 uint8_t RingCounter::GetTState()
 {
   // when clock goes low, increment t-state up to max t-state
+  // when using internal clock, the prev clock state stays 0
+  // and the t_state gets incremented in the Pulse function
   if(_clk_state != _prev_clk_state && _clk_state == 0){
     _t_state < _max_t_state ? _t_state += 1 : _t_state = 1;
   }
