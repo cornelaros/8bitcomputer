@@ -1,6 +1,7 @@
-#include "bus.h"
 #include <inttypes.h>
 #include <Arduino.h>
+
+#include "bus.h"
 
 Bus::Bus(uint8_t we,
          uint8_t r0, uint8_t r1, uint8_t r2, uint8_t r3, uint8_t r4, uint8_t r5, uint8_t r6, uint8_t r7,

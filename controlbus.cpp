@@ -1,6 +1,7 @@
-#include "controlbus.h"
 #include <inttypes.h>
 #include <Arduino.h>
+
+#include "controlbus.h"
 
 ControlBus::ControlBus(uint8_t hlt,
                        uint8_t mi, uint8_t ri, uint8_t ro,

@@ -1,6 +1,7 @@
-#include "ringcounter.h"
 #include <inttypes.h>
 #include <Arduino.h>
+
+#include "ringcounter.h"
 
 void RingCounter::AttachExternal(uint8_t clk)
 {
@@ -9,11 +10,12 @@ void RingCounter::AttachExternal(uint8_t clk)
   pinMode(_clk_pin, INPUT);
 }
 
-void RingCounter::AttachInternal(uint8_t clk)
+void RingCounter::AttachInternal(uint8_t clk, uint8_t delay)
 {
   _external_clock = 0;
   _clk_pin = clk;
   pinMode(_clk_pin, OUTPUT);
+  _delay = delay;
 }
 
 void RingCounter::Reset()
@@ -23,29 +25,27 @@ void RingCounter::Reset()
   _t_state = 1;
 }
 
-void RingCounter::Pulse()
+void RingCounter::Rise()
 {
-  if(_external_clock == 1){
-    return;
-  }
-  _clk_state = 0;
-  digitalWrite(_clk_pin, _clk_state);
-  delay(25);
-
   _clk_state = 1;
-  digitalWrite(_clk_pin, _clk_state);
-  delay(25);
+  if(_external_clock == 0){
+    digitalWrite(_clk_pin, _clk_state);
+    delay(_delay);
+  }
+}
 
+void RingCounter::Fall()
+{
   _clk_state = 0;
-  _t_state < _max_t_state ? _t_state += 1 : _t_state = 1;
-  digitalWrite(_clk_pin, _clk_state);
+  if(_external_clock == 0){
+    digitalWrite(_clk_pin, _clk_state);
+    delay(_delay);
+  }
 }
 
 uint8_t RingCounter::GetTState()
 {
   // when clock goes low, increment t-state up to max t-state
-  // when using internal clock, the prev clock state stays 0
-  // and the t_state gets incremented in the Pulse function
   if(_clk_state != _prev_clk_state && _clk_state == 0){
     _t_state < _max_t_state ? _t_state += 1 : _t_state = 1;
   }
