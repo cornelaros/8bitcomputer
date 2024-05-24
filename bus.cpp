@@ -44,7 +44,6 @@ void Bus::init(uint8_t we,
 
 uint8_t Bus::GetContent()
 {
-  digitalWrite(_bus_write_enable_pin, 1);   // active low enable on 74LS245
   _bus_content = 0b00000000;
 
   // reading the bits one by one rightmost bit first

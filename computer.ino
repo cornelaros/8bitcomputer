@@ -16,8 +16,10 @@ CentralProcessingUnit CPU(BUS, CONTROLBUS, RINGCOUNTER);
 void setup()
 {
   Serial.begin(9600);
-  RINGCOUNTER.AttachInternal(2, 25);
+  
   CPU.Reset();
+  RINGCOUNTER.AttachExternal(2);
+  //RINGCOUNTER.AttachInternal(5, 25);
 }
 
 void loop()
