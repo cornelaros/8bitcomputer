@@ -19,7 +19,10 @@ class CentralProcessingUnit
     ControlBus& _control_bus;
     RingCounter& _ring_counter;
     uint8_t _clock_state;
-    uint8_t _t_state;
+    uint8_t  _t_state;
+    uint8_t  _flags;
+    uint8_t  _instruction;
+    uint16_t _control_word;
 };
 
 #endif

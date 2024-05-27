@@ -45,7 +45,7 @@ void Bus::init(uint8_t we,
 uint8_t Bus::GetContent()
 {
   _bus_content = 0b00000000;
-
+  
   // reading the bits one by one rightmost bit first
   for(uint8_t b = 0; b <= 7; b++){
     uint8_t bit = digitalRead(_bus_read_pins[b]);
@@ -65,4 +65,9 @@ void Bus::SetContent(uint8_t byte)
     uint8_t bit = bitRead(_bus_content, b);
     digitalWrite(_bus_write_pins[b], bit);
   }
+}
+
+void Bus::DisconnectWrite()
+{
+  digitalWrite(_bus_write_enable_pin, 1);
 }

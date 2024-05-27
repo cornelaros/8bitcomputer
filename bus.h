@@ -16,6 +16,7 @@ class Bus
 
     void SetContent(uint8_t byte);
     uint8_t GetContent();
+    void DisconnectWrite();
 
   private:
     uint8_t _bus_content;

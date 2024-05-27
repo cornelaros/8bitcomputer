@@ -47,7 +47,7 @@ uint8_t RingCounter::GetTState()
 {
   // when clock goes low, increment t-state up to max t-state
   if(_clk_state != _prev_clk_state && _clk_state == 0){
-    _t_state < _max_t_state ? _t_state += 1 : _t_state = 1;
+    _t_state < _max_t_state ? _t_state += 1 : _t_state = 0;
   }
   _prev_clk_state = _clk_state;
   return _t_state;

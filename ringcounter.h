@@ -26,8 +26,8 @@ class RingCounter
 
     uint8_t _clk_state = 0;
     uint8_t _prev_clk_state = 0;
-    uint8_t _t_state = 1;
-    uint8_t _max_t_state = 5;
+    uint8_t _t_state = 0;
+    uint8_t _max_t_state = 4;
 
     uint8_t _delay = 1;
 };
