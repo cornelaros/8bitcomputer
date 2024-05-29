@@ -14,10 +14,14 @@ CentralProcessingUnit::CentralProcessingUnit(Bus& b, ControlBus& cb, RingCounter
 // Resetting the CPU will also reset the connected hardware components
 void CentralProcessingUnit::Reset()
 {
+  // Reset all hardware components
   _ring_counter.Reset();
   _bus.SetContent(0x00);
   _control_bus.SetControlWord(MI|II|AI|BI|OI|J|FI); // all registers in
-  delay(100);
+  delay(100); // give hardware some time to receive and handle the control word
+
+  // Hand over control to void Run()
+  _control_bus.SetControlWord(NOP);
   _bus.DisconnectWrite();
 }
 
@@ -33,9 +37,10 @@ void CentralProcessingUnit::Run()
   {
     _control_word = ucode[_instruction][_t_state];
     _control_bus.SetControlWord(_control_word);
+    _ring_counter.Rise();
   }
   else if (_clock_state == 1)
   {
-    Serial.println(_bus.GetContent(), BIN);
+    _ring_counter.Fall();
   }
 }

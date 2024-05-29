@@ -69,5 +69,5 @@ void Bus::SetContent(uint8_t byte)
 
 void Bus::DisconnectWrite()
 {
-  digitalWrite(_bus_write_enable_pin, 1);
+  digitalWrite(_bus_write_enable_pin, 1);   // active low enable on 74LS245
 }

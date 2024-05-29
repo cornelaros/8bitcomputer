@@ -55,6 +55,7 @@ uint8_t RingCounter::GetTState()
 
 uint8_t RingCounter::GetClkState()
 {
+  // if external clock, read clock pin
   _external_clock == 0 ? _clk_state : _clk_state = digitalRead(_clk_pin);
   return _clk_state;
 }
