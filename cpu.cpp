@@ -1,10 +1,10 @@
 #include <inttypes.h>
 #include <Arduino.h>
 
+#include "cpu.h"
 #include "bus.h"
 #include "controlbus.h"
 #include "ringcounter.h"
-#include "cpu.h"
 #include "ucode.h"
 
 // CPU constructor

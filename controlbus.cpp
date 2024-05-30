@@ -59,3 +59,8 @@ void ControlBus::SetControlWord(uint16_t word)
     digitalWrite(_control_bus_pins[b], bit);
   }
 }
+
+uint16_t ControlBus::GetControlWord()
+{
+  return _control_word;
+}

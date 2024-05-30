@@ -45,6 +45,7 @@ class ControlBus
               uint8_t fi);
 
     void SetControlWord(uint16_t word);
+    uint16_t GetControlWord();
   
   private:
     uint16_t _control_word;
