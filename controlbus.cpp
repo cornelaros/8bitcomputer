@@ -3,7 +3,7 @@
 
 #include "controlbus.h"
 
-ControlBus::ControlBus(uint8_t hlt,
+ControlBus::ControlBus(uint8_t ch,
                        uint8_t mi, uint8_t ri, uint8_t ro,
                        uint8_t ii, uint8_t io,
                        uint8_t ai, uint8_t ao,
@@ -13,10 +13,10 @@ ControlBus::ControlBus(uint8_t hlt,
                        uint8_t j, uint8_t ce, uint8_t co,
                        uint8_t fi)
 {
-  init(hlt, mi, ri, ro, ii, io, ai, ao, su, eo, bi, oi, j, ce, co, fi);
+  init(ch, mi, ri, ro, ii, io, ai, ao, su, eo, bi, oi, j, ce, co, fi);
 }
 
-void ControlBus::init(uint8_t hlt,
+void ControlBus::init(uint8_t ch,
                       uint8_t mi, uint8_t ri, uint8_t ro,
                       uint8_t ii, uint8_t io,
                       uint8_t ai, uint8_t ao,
@@ -27,7 +27,7 @@ void ControlBus::init(uint8_t hlt,
                       uint8_t fi)
 {
   // since the word is read from right to left, halt pin is at 15 and flags in at 0
-  _control_bus_pins[15] = hlt;
+  _control_bus_pins[15] = ch;
   _control_bus_pins[14] = mi;
   _control_bus_pins[13] = ri;
   _control_bus_pins[12] = ro;

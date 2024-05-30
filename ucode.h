@@ -2,6 +2,19 @@
 
 #include "controlbus.h"
 
+// Upper nibble is the instruction
+const uint8_t NOP = 0b00000000;
+const uint8_t LDA = 0b00010000;
+const uint8_t ADD = 0b00100000;
+const uint8_t SUB = 0b00110000;
+const uint8_t STA = 0b01000000;
+const uint8_t LDI = 0b01010000;
+const uint8_t JMP = 0b01100000;
+const uint8_t JC  = 0b01110000;
+const uint8_t JZ  = 0b10000000;
+const uint8_t OUT = 0b11100000;
+const uint8_t HLT = 0b11110000;
+
 static const uint16_t ucode[16][8]
 {
   { MI|CO,  RO|II|CE,  0,      0,      0,           0, 0, 0 },   // 0000 - NOP
@@ -19,5 +32,5 @@ static const uint16_t ucode[16][8]
   { MI|CO,  RO|II|CE,  0,      0,      0,           0, 0, 0 },   // 1100
   { MI|CO,  RO|II|CE,  0,      0,      0,           0, 0, 0 },   // 1101
   { MI|CO,  RO|II|CE,  AO|OI,  0,      0,           0, 0, 0 },   // 1110 - OUT
-  { MI|CO,  RO|II|CE,  HLT,    0,      0,           0, 0, 0 },   // 1111 - HLT
+  { MI|CO,  RO|II|CE,  CH,     0,      0,           0, 0, 0 },   // 1111 - HLT
 };

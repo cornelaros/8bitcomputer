@@ -3,8 +3,8 @@
 
 #include <inttypes.h>
 
-const uint16_t NOP = 0b0000000000000000;
-const uint16_t HLT = 0b1000000000000000;
+const uint16_t NUL = 0b0000000000000000;
+const uint16_t CH  = 0b1000000000000000;
 const uint16_t MI  = 0b0100000000000000;
 const uint16_t RI  = 0b0010000000000000;
 const uint16_t RO  = 0b0001000000000000;
@@ -24,7 +24,7 @@ const uint16_t FI  = 0b0000000000000001;
 class ControlBus
 {
   public:
-    ControlBus(uint8_t hlt,                         // clock halt
+    ControlBus(uint8_t ch,                          // clock halt
                uint8_t mi, uint8_t ri, uint8_t ro,  // mem address in, ram in, ram out
                uint8_t ii, uint8_t io,              // instruction reg in, out
                uint8_t ai, uint8_t ao,              // accumulator in, out
@@ -34,7 +34,7 @@ class ControlBus
                uint8_t j, uint8_t ce, uint8_t co,   // jump, count enable, counter out
                uint8_t fi);                         // flags reg in
 
-    void init(uint8_t hlt,
+    void init(uint8_t ch,
               uint8_t mi, uint8_t ri, uint8_t ro,
               uint8_t ii, uint8_t io,
               uint8_t ai, uint8_t ao,

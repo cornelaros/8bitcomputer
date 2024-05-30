@@ -21,7 +21,7 @@ void CentralProcessingUnit::Reset()
   delay(100); // give hardware some time to receive and handle the control word
 
   // Hand over control to void Run()
-  _control_bus.SetControlWord(NOP);
+  _control_bus.SetControlWord(NUL);
   _bus.DisconnectWrite();
 }
 
