@@ -8,8 +8,8 @@
 #include "ucode.h"
 
 // CPU constructor
-CentralProcessingUnit::CentralProcessingUnit(Bus& b, ControlBus& cb, RingCounter& rc) :
-    _bus(b), _control_bus(cb), _ring_counter(rc){}
+CentralProcessingUnit::CentralProcessingUnit(Bus& b, Bus& ir, ControlBus& cb, RingCounter& rc) :
+    _bus(b), _instruction_register(ir), _control_bus(cb), _ring_counter(rc){}
 
 // Resetting the CPU will also reset the connected hardware components
 void CentralProcessingUnit::Reset()
@@ -31,7 +31,7 @@ void CentralProcessingUnit::Run()
   _clock_state = _ring_counter.GetClkState();
   _t_state     = _ring_counter.GetTState();
   _flags       = 0b00;
-  _instruction = 0b0000;
+  _instruction = _instruction_register.GetContent();
 
   if(_clock_state == 0)
   {

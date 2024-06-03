@@ -10,12 +10,13 @@
 class CentralProcessingUnit
 {
   public:
-    CentralProcessingUnit(Bus& b, ControlBus& cb, RingCounter& rc);
+    CentralProcessingUnit(Bus& b, Bus& ir, ControlBus& cb, RingCounter& rc);
     void Reset();
     void Run();
 
   private:
     Bus& _bus;
+    Bus& _instruction_register;
     ControlBus& _control_bus;
     RingCounter& _ring_counter;
     uint8_t _clock_state;

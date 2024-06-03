@@ -6,13 +6,14 @@
 
 // Define hardware interfaces
 RingCounter RINGCOUNTER;
-Bus BUS(7,
+Bus BUS(3,
         22, 24, 26, 28, 30, 32, 34, 36,
         23, 25, 27, 29, 31, 33, 35, 37);
+Bus INSTRUCTION_REGISTER(4, 5, 6, 7);
 ControlBus CONTROLBUS(38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53);
 
 // Create CPU object
-CentralProcessingUnit CPU(BUS, CONTROLBUS, RINGCOUNTER);
+CentralProcessingUnit CPU(BUS, INSTRUCTION_REGISTER, CONTROLBUS, RINGCOUNTER);
 
 // Create memory object
 Memory MEM(BUS, CONTROLBUS, RINGCOUNTER);
