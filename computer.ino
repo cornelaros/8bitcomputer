@@ -17,17 +17,7 @@ CentralProcessingUnit CPU(BUS, CONTROLBUS, RINGCOUNTER);
 // Create memory object
 Memory MEM(BUS, CONTROLBUS, RINGCOUNTER);
 
-void setup()
-{
-  // First, reset CPU and RAM
-  CPU.Reset();
-  MEM.Reset();
-
-  // Lastly, attach ring counter
-  RINGCOUNTER.AttachExternal(2);
-}
-
-void loop()
+void Run()
 {
   CPU.Run();
   MEM.Run();
@@ -38,4 +28,22 @@ void loop()
   if (!(CONTROLBUS.GetControlWord() & RO)) {
     BUS.DisconnectWrite();
   }
+}
+
+void setup()
+{
+  // First, reset CPU and RAM
+  CPU.Reset();
+  MEM.Reset();
+
+  // Lastly, attach ring counter
+  RINGCOUNTER.AttachExternal(2);
+
+  // For debugging purposes
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  Run();
 }
