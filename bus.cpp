@@ -16,8 +16,8 @@ Bus::Bus(uint8_t r0, uint8_t r1, uint8_t r2, uint8_t r3, uint8_t r4, uint8_t r5,
 }
 
 Bus::Bus(uint8_t we,
-    uint8_t r0, uint8_t r1, uint8_t r2, uint8_t r3,
-    uint8_t w0, uint8_t w1, uint8_t w2, uint8_t w3)
+         uint8_t r0, uint8_t r1, uint8_t r2, uint8_t r3,
+         uint8_t w0, uint8_t w1, uint8_t w2, uint8_t w3)
 {
   init(1, we, r0, r1, r2, r3, 0, 0, 0, 0, w0, w1, w2, w3, 0, 0, 0, 0);
 }
@@ -28,8 +28,8 @@ Bus::Bus(uint8_t r0, uint8_t r1, uint8_t r2, uint8_t r3)
 }
 
 void Bus::init(uint8_t fourbitmode, uint8_t we,
-              uint8_t r0, uint8_t r1, uint8_t r2, uint8_t r3, uint8_t r4, uint8_t r5, uint8_t r6, uint8_t r7,
-              uint8_t w0, uint8_t w1, uint8_t w2, uint8_t w3, uint8_t w4, uint8_t w5, uint8_t w6, uint8_t w7)
+               uint8_t r0, uint8_t r1, uint8_t r2, uint8_t r3, uint8_t r4, uint8_t r5, uint8_t r6, uint8_t r7,
+               uint8_t w0, uint8_t w1, uint8_t w2, uint8_t w3, uint8_t w4, uint8_t w5, uint8_t w6, uint8_t w7)
 {
   _bus_write_enable_pin = we;
   
@@ -55,8 +55,13 @@ void Bus::init(uint8_t fourbitmode, uint8_t we,
     pinMode(_bus_write_enable_pin, OUTPUT);
   }  
   
-  fourbitmode ? _number_of_bits = 4 : _number_of_bits = 8;
-  for(uint8_t i; i < _number_of_bits; i++){
+  if(fourbitmode){
+    _number_of_bits = 4;
+  } else {
+    _number_of_bits = 8;
+  }
+  
+  for(uint8_t i = 0; i < _number_of_bits; i++){
     pinMode(_bus_read_pins[i], INPUT_PULLUP);
     pinMode(_bus_write_pins[i], OUTPUT);
   }

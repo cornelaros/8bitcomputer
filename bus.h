@@ -31,7 +31,7 @@ class Bus
     void DisconnectWrite();
 
   private:
-    uint8_t _number_of_bits;
+    uint8_t _number_of_bits;    
     uint8_t _bus_content;
     uint8_t _bus_write_enable_pin;
     uint8_t _bus_read_pins[8];
