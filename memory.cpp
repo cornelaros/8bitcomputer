@@ -1,4 +1,5 @@
 #include <inttypes.h>
+#include <Arduino.h>
 
 #include "memory.h"
 #include "bus.h"
@@ -31,4 +32,9 @@ void Memory::Run()
       _memory_content[_memory_address] = _bus.GetContent();
     }
   }
+}
+
+void Memory::LoadFromFlash(uint8_t _new_content[16])
+{
+  memcpy_P(_memory_content, _new_content, sizeof(_new_content));
 }

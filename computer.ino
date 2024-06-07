@@ -3,6 +3,7 @@
 #include "ringcounter.h"
 #include "cpu.h"
 #include "memory.h"
+#include "assemblycode.h"
 
 // Define hardware interfaces
 RingCounter RINGCOUNTER;
@@ -36,6 +37,9 @@ void setup()
   // First, reset CPU and RAM
   CPU.Reset();
   MEM.Reset();
+
+  // Load program into RAM
+  MEM.LoadFromFlash(assembly_code);
 
   // Lastly, attach ring counter
   RINGCOUNTER.AttachExternal(2);

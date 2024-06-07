@@ -13,6 +13,7 @@ class Memory
     Memory(Bus& b, ControlBus& cb, RingCounter& rc);
     void Reset();
     void Run();
+    void LoadFromFlash(uint8_t _new_content[16]);
       
   private:
     Bus& _bus;
@@ -24,24 +25,7 @@ class Memory
     uint8_t _clock_state;
 
     uint8_t _memory_address;
-    uint8_t _memory_content[16]{
-       0,
-       1,
-       2,
-       3,
-       4,
-       5,
-       6,
-       7,
-       8,
-       9,
-      10,
-      11,
-      12,
-      13,
-      14,
-      15
-    };
+    uint8_t _memory_content[16]{};
 };
 
 #endif

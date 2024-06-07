@@ -1,18 +1,21 @@
+#ifndef ucode_h
+#define ucode_h
+
 #include <inttypes.h>
 
 #include "controlbus.h"
 
-const uint8_t NOP = 0b0000;
-const uint8_t LDA = 0b0001;
-const uint8_t ADD = 0b0010;
-const uint8_t SUB = 0b0011;
-const uint8_t STA = 0b0100;
-const uint8_t LDI = 0b0101;
-const uint8_t JMP = 0b0110;
-const uint8_t JC  = 0b0111;
-const uint8_t JZ  = 0b1000;
-const uint8_t OUT = 0b1110;
-const uint8_t HLT = 0b1111;
+const uint8_t NOP = 0b00000000;
+const uint8_t LDA = 0b00010000;
+const uint8_t ADD = 0b00100000;
+const uint8_t SUB = 0b00110000;
+const uint8_t STA = 0b01000000;
+const uint8_t LDI = 0b01010000;
+const uint8_t JMP = 0b01100000;
+const uint8_t JC  = 0b01110000;
+const uint8_t JZ  = 0b10000000;
+const uint8_t OUT = 0b11100000;
+const uint8_t HLT = 0b11110000;
 
 static const uint16_t ucode[16][8]
 {
@@ -33,3 +36,5 @@ static const uint16_t ucode[16][8]
   { MI|CO,  RO|II|CE,  AO|OI,  0,      0,           0, 0, 0 },   // 1110 - OUT
   { MI|CO,  RO|II|CE,  CH,     0,      0,           0, 0, 0 },   // 1111 - HLT
 };
+
+#endif
