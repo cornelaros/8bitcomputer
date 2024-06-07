@@ -26,10 +26,11 @@ void CentralProcessingUnit::Reset()
 }
 
 // Running the computer will start the program from RAM
-void CentralProcessingUnit::Run()
+void CentralProcessingUnit::Run(uint8_t clk, uint8_t t)
 {
-  _clock_state = _ring_counter.GetClkState();
-  _t_state     = _ring_counter.GetTState();
+  _clock_state = clk;
+  _t_state     = t;
+
   _flags       = 0b00;
   _instruction = _instruction_register.GetContent();
 
@@ -37,10 +38,5 @@ void CentralProcessingUnit::Run()
   {
     _control_word = ucode[_instruction][_t_state];
     _control_bus.SetControlWord(_control_word);
-    _ring_counter.Rise();
-  }
-  else if (_clock_state == 1)
-  {
-    _ring_counter.Fall();
   }
 }

@@ -14,9 +14,9 @@ void Memory::Reset()
   _memory_address = 0;
 }
 
-void Memory::Run()
+void Memory::Run(uint8_t clk)
 {
-  _clock_state = _ring_counter.GetClkState();
+  _clock_state = clk;
   _control_word = _control_bus.GetControlWord();
 
   if(_clock_state == 0){
@@ -24,6 +24,7 @@ void Memory::Run()
       _bus.SetContent(_memory_content[_memory_address]);
     }
   }
+
   else if(_clock_state == 1){
     if (_control_word & MI) {
       _memory_address = _bus.GetContent();
@@ -32,9 +33,4 @@ void Memory::Run()
       _memory_content[_memory_address] = _bus.GetContent();
     }
   }
-}
-
-void Memory::LoadFromFlash(uint8_t _new_content[16])
-{
-  memcpy_P(_memory_content, _new_content, sizeof(_new_content));
 }

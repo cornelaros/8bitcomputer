@@ -12,7 +12,7 @@ class CentralProcessingUnit
   public:
     CentralProcessingUnit(Bus& b, Bus& ir, ControlBus& cb, RingCounter& rc);
     void Reset();
-    void Run();
+    void Run(uint8_t clk, uint8_t t);
 
   private:
     Bus& _bus;

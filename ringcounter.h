@@ -11,9 +11,6 @@ class RingCounter
     void AttachInternal(uint8_t clk, uint8_t delay);
     
     void Reset();
-
-    void Rise();
-    void Fall();
     
     uint8_t GetTState();
     uint8_t GetClkState();
@@ -30,6 +27,9 @@ class RingCounter
     uint8_t _max_t_state = 4;
 
     uint8_t _delay = 1;
+
+    void Rise();
+    void Fall();
 };
 
 #endif
