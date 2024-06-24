@@ -15,11 +15,13 @@ CentralProcessingUnit::CentralProcessingUnit(Bus& b, Bus& ir, ControlBus& cb, Ri
 void CentralProcessingUnit::Reset()
 {
   // Reset all hardware components
-  _ring_counter.Reset();
   _bus.SetContent(0x00);
   _control_bus.SetControlWord(MI|II|AI|BI|OI|J|FI); // all registers in
-  delay(100); // give hardware some time to receive and handle the control word
-
+  _ring_counter.AttachInternal(2, 100);
+  _ring_counter.Rise();
+  _ring_counter.Fall();
+  _ring_counter.Reset();
+  
   // Hand over control to void Run()
   _control_bus.SetControlWord(NUL);
   _bus.DisconnectWrite();

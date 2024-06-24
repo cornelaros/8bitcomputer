@@ -10,7 +10,7 @@ void RingCounter::AttachExternal(uint8_t clk)
   pinMode(_clk_pin, INPUT);
 }
 
-void RingCounter::AttachInternal(uint8_t clk, uint8_t delay)
+void RingCounter::AttachInternal(uint8_t clk, uint16_t delay)
 {
   _external_clock = 0;
   _clk_pin = clk;
@@ -22,7 +22,7 @@ void RingCounter::Reset()
 {
   _clk_state = 0;
   _prev_clk_state = 0;
-  _t_state = 1;
+  _t_state = 0;
 }
 
 void RingCounter::Rise()

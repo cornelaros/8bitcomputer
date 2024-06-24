@@ -8,12 +8,15 @@ class RingCounter
   public:
     RingCounter;
     void AttachExternal(uint8_t clk);
-    void AttachInternal(uint8_t clk, uint8_t delay);
+    void AttachInternal(uint8_t clk, uint16_t delay);
     
     void Reset();
     
     uint8_t GetTState();
     uint8_t GetClkState();
+
+    void Rise();
+    void Fall();
 
   private:
     uint8_t _external_clock;
@@ -26,10 +29,7 @@ class RingCounter
     uint8_t _t_state = 0;
     uint8_t _max_t_state = 4;
 
-    uint8_t _delay = 1;
-
-    void Rise();
-    void Fall();
+    uint16_t _delay = 1;
 };
 
 #endif
