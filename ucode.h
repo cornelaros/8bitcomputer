@@ -26,8 +26,8 @@ static const uint16_t ucode[16][8]
   { MI|CO,  RO|II|CE,  IO|MI,  AO|RI,  0,           0, 0, 0 },   // 0100 - STA
   { MI|CO,  RO|II|CE,  IO|AI,  0,      0,           0, 0, 0 },   // 0101 - LDI
   { MI|CO,  RO|II|CE,  IO|J,   0,      0,           0, 0, 0 },   // 0110 - JMP
-  { MI|CO,  RO|II|CE,  0,      0,      0,           0, 0, 0 },   // 0111 - JC
-  { MI|CO,  RO|II|CE,  0,      0,      0,           0, 0, 0 },   // 1000 - JZ
+  { MI|CO,  RO|II|CE,  IO|J,   0,      0,           0, 0, 0 },   // 0111 - JC
+  { MI|CO,  RO|II|CE,  IO|J,   0,      0,           0, 0, 0 },   // 1000 - JZ
   { MI|CO,  RO|II|CE,  0,      0,      0,           0, 0, 0 },   // 1001
   { MI|CO,  RO|II|CE,  0,      0,      0,           0, 0, 0 },   // 1010
   { MI|CO,  RO|II|CE,  0,      0,      0,           0, 0, 0 },   // 1011
