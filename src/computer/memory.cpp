@@ -4,10 +4,9 @@
 #include "memory.h"
 #include "bus.h"
 #include "controlbus.h"
-#include "ringcounter.h"
 
-Memory::Memory(Bus& b, ControlBus& cb, RingCounter& rc) :
-    _bus(b), _control_bus(cb), _ring_counter(rc){}
+Memory::Memory(Bus& b, ControlBus& cb) :
+    _bus(b), _control_bus(cb){}
 
 void Memory::Reset()
 {

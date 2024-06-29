@@ -5,20 +5,18 @@
 
 #include "bus.h"
 #include "controlbus.h"
-#include "ringcounter.h"
 #include "ucode.h"
 
 class Memory
 {
   public:
-    Memory(Bus& b, ControlBus& cb, RingCounter& rc);
+    Memory(Bus& b, ControlBus& cb);
     void Reset();
     void Run(uint8_t clk);
       
   private:
     Bus& _bus;
     ControlBus& _control_bus;
-    RingCounter& _ring_counter;
 
     uint8_t _bus_content;
     uint16_t _control_word;
