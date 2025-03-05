@@ -33,3 +33,13 @@ void Memory::Run(uint8_t clk)
     }
   }
 }
+
+void Memory::SetMemoryContent(uint8_t address, uint8_t content)
+{
+  _memory_content[address] = content;
+}
+
+uint8_t Memory::GetMemoryContent(uint8_t address)
+{
+  return _memory_content[address];
+}

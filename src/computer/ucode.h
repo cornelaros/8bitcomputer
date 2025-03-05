@@ -2,10 +2,11 @@
 #define ucode_h
 
 #include <inttypes.h>
+#include <Arduino.h>
 
 #include "controlbus.h"
 
-const uint8_t NOP = 0b00000000;
+const uint8_t NOP = 0b00000000; // opCode is the 4 most significant bits
 const uint8_t LDA = 0b00010000;
 const uint8_t ADD = 0b00100000;
 const uint8_t SUB = 0b00110000;
@@ -35,6 +36,25 @@ static const uint16_t ucode[16][8]
   { MI|CO,  RO|II|CE,  0,      0,      0,           0, 0, 0 },   // 1101
   { MI|CO,  RO|II|CE,  AO|OI,  0,      0,           0, 0, 0 },   // 1110 - OUT
   { MI|CO,  RO|II|CE,  CH,     0,      0,           0, 0, 0 },   // 1111 - HLT
+};
+
+static const String ucodeLookupTable[16]{
+  "NOP",  // index 0 is NOP, bitshift to the left by 4 for opCode
+  "LDA",
+  "ADD",
+  "SUB",
+  "STA",
+  "LDI",
+  "JMP",
+  "JC",
+  "JZ",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "OUT",
+  "HLT"
 };
 
 #endif

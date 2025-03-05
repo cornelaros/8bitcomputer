@@ -3,6 +3,7 @@
 #include "ringcounter.h"
 #include "cpu.h"
 #include "memory.h"
+#include "programmer.h"
 
 RingCounter RINGCOUNTER;
 uint8_t clock_state = 0;
@@ -17,6 +18,8 @@ uint8_t ZERO_FLAG = 8;
 uint8_t CARRY_FLAG = 9;
 CentralProcessingUnit CPU(BUS, INSTRUCTION_REGISTER, CONTROLBUS, RINGCOUNTER, ZERO_FLAG, CARRY_FLAG);
 Memory MEM(BUS, CONTROLBUS);
+
+Programmer PROGRAMMER(MEM);
 
 void Run()
 {
@@ -41,9 +44,11 @@ void setup()
   CPU.Reset();
   MEM.Reset();
   RINGCOUNTER.AttachExternal(2);
+
+  PROGRAMMER.Reset();
 }
 
 void loop()
 {
-  Run();
+  PROGRAMMER.WaitForSerial();
 }

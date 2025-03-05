@@ -13,6 +13,8 @@ class Memory
     Memory(Bus& b, ControlBus& cb);
     void Reset();
     void Run(uint8_t clk);
+    void SetMemoryContent(uint8_t address, uint8_t content);
+    uint8_t GetMemoryContent(uint8_t address);
       
   private:
     Bus& _bus;
